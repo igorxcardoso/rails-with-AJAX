@@ -1,0 +1,46 @@
+<%= form_with(model: endereco, local: true) do |form| %>
+  <% if endereco.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(endereco.errors.count, "error") %> prohibited this endereco from being saved:</h2>
+
+      <ul>
+      <% endereco.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field cascata">
+    <%= form.label :estado_id %>
+
+    <%= form.select :estado_id, Estado.all.collect { |e| [e.nome, e.id]}, :selected => @endereco.estado_id, :include_blank => "Selecione" %>
+  </div>
+
+
+  <div class="field cascata">
+    <%= form.label :cidade_id %>
+
+    <%= form.select :cidade_id, [], :selected => @endereco.estado_id %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :bairro %>
+    <%= form.text_field :bairro %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cep %>
+    <%= form.text_field :cep %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero %>
+    <%= form.number_field :numero %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
