@@ -27,6 +27,11 @@ $(document).ready(() => {
         // Ação AJAX
         cidade_id = $(".cascata #endereco_estado_id").val();
 
+        if(cidade_id == "") {
+            $(".cascata #endereco_cidade_id").html("");
+            return;
+        }
+
         $.ajax("/cidades.json?estado_id=" + cidade_id)
         .done(function(data) {
             var htmlOptions = "";

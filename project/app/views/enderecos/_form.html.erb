@@ -11,6 +11,16 @@
     </div>
   <% end %>
 
+  <%
+    cidades = []
+
+    if @endereco.estado_id.present?
+      cidades = Cidades.where(estado_id: @endereco.estado_id).collect { |c| [c.nome, c.id]}
+    end
+  %>
+
+
+
   <div class="field cascata">
     <%= form.label :estado_id %>
 
